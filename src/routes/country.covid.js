@@ -1,16 +1,17 @@
 /**
  * @author Israel Yasis
  */
-import { Router }  from "express";
+'use strict';
+
+const express = require("express");
 const countryCodivController = require("../controllers/country.covid");
-const countryControler = countryCodivController();
-const router = Router();
+const router = express.Router();
 router
   .route("/")
-  .get(countryControler.getCountryCodiv);
+  .get(countryCodivController.getCountriesCodiv);
 
 router
   .route("/:country")
   .get(countryCodivController.getCountryCodiv);
 
-export default router;
+module.exports = router;
