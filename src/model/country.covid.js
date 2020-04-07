@@ -1,18 +1,24 @@
 /**
  * @author Israel Yasis
  */
-const mongoose = require('mongoose');
+const mongoose = require('../config/database');
 
-const CountryCovidSchema  = new mongoose.Schema({
-    city: String,
-    province: String,
+const schema = {
     country: String,
     lastUpdate: Date,
-    keyId: Array,
     confirmed: Number,
     deaths: Number,
-    recover: Number
-});
-const CountryCodiv = mongoose.model('CountryCodiv', CountryCovidSchema);
+    recover: Number,
+    provinceList: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "provinceCodiv"
+        }
+    ],
+    
+};
+const collectionName = "countryCodiv";
+const countryCodivSchema = mongoose.Schema(schema);
+const countryCodiv = mongoose.model(collectionName, countryCodivSchema);
 
-module.exports = CountryCodiv;
+module.exports = countryCodiv;
