@@ -1,0 +1,16 @@
+{
+  "name": "node-codi-19-assure",
+  "version": "1.0.0",
+  "description": "A project just for practice purposes",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ysrael182",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7"
+  }
+}
