@@ -14,17 +14,18 @@ let unirest  = require('unirest');
 async function getCountryCodiv(query) {
     
     let countryCodiv = await countryCodivModel.findOne(query).exec();
-    if(countryCodiv == null 
-        || (countryCodiv.lastUpdate - Date.now () < api.apiRefresh)) {
+    if(countryCodiv == null || (countryCodiv.lastUpdate - Date.now () < api.apiRefresh)) {
         const informationCodiv = await getCountryApi(query);
         if(countryCodiv == null) {
-            countryCodiv = new countryCodivModel(informationCodiv).save(function (error) {
+            countryCodiv = new countryCodivModel(informationCodiv)
+            .save(function (error) {
                 if (error) {
                     throw new Error("Error creating a new register of codiv.");
                 }
             }); 
         } else {
-            countryCodiv.updateOne(informationCodiv, function(error){
+            countryCodiv.updateOne(informationCodiv,
+                 function(error){
                 if (error) {
                     throw new Error("Error updating codiv.");
                 }

@@ -7,5 +7,26 @@ const api = {
     apiV1URL : 'https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats',
     apiKey : 'ae08bedc18msh16da0b87fa48f98p14182ajsn4e61a4d39118',
     apiRefresh : 30000, //time to refresh miliseconds
+    validCountries: [
+        "Brazil", 
+        "Colombia", 
+        "Argentina", 
+        "Peru", 
+        "Venezuela", 
+        "Chile", 
+        "Ecuador",
+        "Guatemala",
+        "Cuba",
+        "Haiti",
+        "Bolivia",
+        "Dominican Republic",
+        "Honduras",
+        "Paraguay",
+        "Nicaragua",
+        "El Salvador",
+        "Costa Rica",
+        "Panama",
+        "Uruguay"
+    ]
 };
 module.exports = api;

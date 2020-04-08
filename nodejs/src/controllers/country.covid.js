@@ -4,11 +4,16 @@
 'use strict';
 
 const countryCodivService = require("../services/country.covid");
+const { validationResult }  = require("express-validator/check");
+
 exports.getCountryCovid = async function(req, res, next) {
-    let countryName = parseCountryName(req);
+    let validation = validationResult(req);
+    if (!validation.isEmpty()) {
+        return res.status(400).json({ errors: validation.array()});
+    }
     try {
         var countriesCodiv = await countryCodivService.getCountryCodiv({
-            country: countryName
+            country: req.params.countryName
         });
         return res.status(200).json({
             status: 200,
@@ -23,10 +28,10 @@ exports.getCountryCovid = async function(req, res, next) {
     }
 };
 exports.getCountryCovidApi =  async function(req, res, next) {
-    let countryName = parseCountryName(req);
+    
     try {
         var countriesCodiv = await countryCodivService.getCountryApi({
-            country: countryName
+            country: req.params.countryName
         });
         return res.status(200).json({
             status: 200,
@@ -39,17 +44,5 @@ exports.getCountryCovidApi =  async function(req, res, next) {
             message: e.message
         });     
     }
-}
-/**
- * 
- * @param {Object} req
- * @return {String} 
- */
-function parseCountryName(req) {
-    let countryName = req.params.countryName;
-    if(countryName.length > 1) {
-        countryName = countryName.charAt(0).toUpperCase() + countryName.slice(1)
-    }
-    return countryName;
 }
 

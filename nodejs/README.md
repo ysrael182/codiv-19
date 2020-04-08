@@ -16,3 +16,6 @@ Inside the root folder, run:
 ```
 npm start
 ```
+
+## Controllers
+the controller api are

@@ -1,6 +1,7 @@
 /**
  * @author Israel Yasis
  */
+'use strict';
 const mongoose = require('../config/database');
 
 const schema = {
