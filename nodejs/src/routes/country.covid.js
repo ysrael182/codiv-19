@@ -16,9 +16,9 @@ router
     param('countryName').customSanitizer(value => sanitazationCountry.parseCountryName(value)),
     param('countryName').custom(value => validatorCountry.validateCountry(value))
   ], countryCodivController.getCountryCovid);
-
+/*
 router
   .route("/test-api/:countryName")
   .get(countryCodivController.getCountryCovidApi);
-  
+  */
 module.exports = router;

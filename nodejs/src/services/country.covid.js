@@ -14,7 +14,7 @@ let unirest  = require('unirest');
 async function getCountryCodiv(query) {
     
     let countryCodiv = await countryCodivModel.findOne(query).exec();
-    if(countryCodiv == null || (countryCodiv.lastUpdate - Date.now () < api.apiRefresh)) {
+    if(countryCodiv == null || (Date.now() - countryCodiv.lastUpdate > api.apiRefresh)) {
         const informationCodiv = await getCountryApi(query);
         if(countryCodiv == null) {
             countryCodiv = new countryCodivModel(informationCodiv)
@@ -24,8 +24,9 @@ async function getCountryCodiv(query) {
                 }
             }); 
         } else {
-            countryCodiv.updateOne(informationCodiv,
-                 function(error){
+            countryCodiv = await countryCodivModel.findOneAndUpdate({country: query.country},
+                informationCodiv, 
+                function(error){
                 if (error) {
                     throw new Error("Error updating codiv.");
                 }

@@ -1,2 +1,26 @@
 nodejs/.vscode/
 nodejs/node_modules/
+.vscode/
+
+react-codiv/.vscode/
+react-codiv/node_modules/
+react-codiv/node_modules
+react-codiv/.pnp
+react-codiv/.pnp.js
+
+# testing
+react-codiv/coverage
+
+# production
+react-codiv/build
+
+# misc
+react-codiv/.DS_Store
+react-codiv/.env.local
+react-codiv/.env.development.local
+react-codiv/.env.test.local
+react-codiv/.env.production.local
+
+react-codiv/npm-debug.log*
+react-codiv/yarn-debug.log*
+react-codiv/yarn-error.log*
