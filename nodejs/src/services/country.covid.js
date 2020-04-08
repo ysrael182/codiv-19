@@ -5,8 +5,6 @@ const countryCodivMongoose= require("../model/country.covid");
 const countryCodivModel = countryCodivMongoose.countryCodiv;
 const api = require("../config/api.codiv");
 let unirest  = require('unirest');
-/**const express = require('express');
-const app = express = express();*/
 /**
  * 
  * @param {Object} query 
@@ -16,7 +14,8 @@ const app = express = express();*/
 async function getCountryCodiv(query) {
     
     let countryCodiv = await countryCodivModel.findOne(query).exec();
-    if(countryCodiv == null || (countryCodiv.lastUpdate - Date.now () < api.apiRefresh)) {
+    if(countryCodiv == null 
+        || (countryCodiv.lastUpdate - Date.now () < api.apiRefresh)) {
         const informationCodiv = await getCountryApi(query);
         if(countryCodiv == null) {
             countryCodiv = new countryCodivModel(informationCodiv).save(function (error) {
@@ -27,7 +26,7 @@ async function getCountryCodiv(query) {
         } else {
             countryCodiv.updateOne(informationCodiv, function(error){
                 if (error) {
-                    throw new Error("Error updatingcodiv.");
+                    throw new Error("Error updating codiv.");
                 }
             });    
         }    
