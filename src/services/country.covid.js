@@ -5,13 +5,17 @@ const countryCodivMongoose= require("../model/country.covid");
 const countryCodivModel = countryCodivMongoose.countryCodiv;
 const api = require("../config/api.codiv");
 let unirest  = require('unirest');
+/**const express = require('express');
+const app = express = express();*/
 /**
  * 
  * @param {Object} query 
+ * @return {Object}
+ * @throws {Error}
  */
 async function getCountryCodiv(query) {
     
-    const countryCodiv = await countryCodivModel.findOne(query).exec();
+    let countryCodiv = await countryCodivModel.findOne(query).exec();
     if(countryCodiv == null || (countryCodiv.lastUpdate - Date.now () < api.apiRefresh)) {
         const informationCodiv = await getCountryApi(query);
         if(countryCodiv == null) {
@@ -21,14 +25,14 @@ async function getCountryCodiv(query) {
                 }
             }); 
         } else {
-            countryCodiv.update(informationCodiv, function(error){
+            countryCodiv.updateOne(informationCodiv, function(error){
                 if (error) {
                     throw new Error("Error updatingcodiv.");
                 }
             });    
         }    
     }
-    return countryCodivRegister;
+    return countryCodiv;
 }
 exports.getCountryCodiv = getCountryCodiv;
 /**
@@ -38,6 +42,7 @@ exports.getCountryCodiv = getCountryCodiv;
  * @throws {Error}
  */
 async function getCountryApi(query) {
+    
     return unirest.get(api.apiV1URL).headers({
         "x-rapidapi-host": api.apiHost,
         "x-rapidapi-key": api.apiKey

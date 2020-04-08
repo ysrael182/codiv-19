@@ -6,6 +6,7 @@ const dbName = 'codiv';
 const dbPath = 'mongodb://localhost:27017/'+ dbName;
 
 mongoose.connect(dbPath, {
+  useUnifiedTopology: true,
   useNewUrlParser: true
 });
 const db = mongoose.connection;
