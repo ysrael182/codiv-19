@@ -10,5 +10,8 @@ const router = express.Router();
 router
   .route("/:countryName")
   .get(countryCodivController.getCountryCovid);
-
+router
+  .route("/test-api/:countryName")
+  .get(countryCodivController.getCountryCovidApi);
+  
 module.exports = router;

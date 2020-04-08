@@ -3,7 +3,7 @@
  */
 const mongoose  = require('mongoose');
 const dbName = 'codiv';
-const dbPath = 'mongodb://localhost:27017'+ dbName;
+const dbPath = 'mongodb://localhost:27017/'+ dbName;
 
 mongoose.connect(dbPath, {
   useNewUrlParser: true
