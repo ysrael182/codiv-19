@@ -4,7 +4,9 @@ class Header extends React.Component {
     render() {
       return (
         <header>
-            <div className="header-content">Codiv Countries</div>
+            <div className="header-content">
+              <h1>Codiv Countries</h1>
+            </div>
         </header>
       );
     }

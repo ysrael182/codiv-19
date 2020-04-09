@@ -18,7 +18,7 @@ router
   ], countryCodivController.getCountryCovid);
 
 router
-  .route("/available-countries")
-  .get(countryCodivController.getCountryCovidApi);
+  .route("/")
+  .get(countryCodivController.getAvailableCountries);
   
 module.exports = router;

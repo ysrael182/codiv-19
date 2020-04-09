@@ -24,7 +24,7 @@ export function getCountryRequest(country: string): GetCountryRequestAction{
     country
   };
 }
-export function getListCountries(countries: String[]): GetListCountriesAction {
+export function getListCountries(countries: Country[]): GetListCountriesAction {
   return {
      type: GET_LIST_COUNTRIES,
      payload: countries

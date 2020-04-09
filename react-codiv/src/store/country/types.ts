@@ -5,9 +5,7 @@
 export interface Country {
     name: string;
 }
-export interface CountryState {
-    countries: Country[];
-}
+
 export const GET_COUNTRY = "GET_COUNTRY";
 export const GET_LIST_COUNTRIES = "GET_LIST_COUNTRIES";
 
@@ -18,7 +16,7 @@ export interface GetCountryAction {
 
 export interface GetListCountriesAction {
   type: typeof GET_LIST_COUNTRIES;
-  payload: String[]
+  payload: Country[]
 }
 
 export const GET_LIST_COUNTRIES_REQUEST = "GET_LIST_COUNTRIES_REQUEST";
