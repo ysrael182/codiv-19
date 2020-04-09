@@ -8,19 +8,32 @@ export interface Country {
 export interface CountryState {
     countries: Country[];
 }
-export const UPDATE_COUNTRY = "UPDATE_COUNTRY";
-export const LIST_COUNTRIES = "LIST_COUNTRIES";
+export const GET_COUNTRY = "GET_COUNTRY";
+export const GET_LIST_COUNTRIES = "GET_LIST_COUNTRIES";
 
-interface UpdateCountryAction {
-  type: typeof UPDATE_COUNTRY;
+export interface GetCountryAction {
+  type: typeof GET_COUNTRY;
   payload: Country;
 }
 
-interface ListCountryAction {
-  type: typeof LIST_COUNTRIES;
-  meta: {
-    timestamp: number;
-  };
+export interface GetListCountriesAction {
+  type: typeof GET_LIST_COUNTRIES;
+  payload: String[]
 }
 
-export type CountryActionTypes = UpdateCountryAction | ListCountryAction;
+export const GET_LIST_COUNTRIES_REQUEST = "GET_LIST_COUNTRIES_REQUEST";
+
+export interface GetListCountriesRequestAction {
+  type: typeof GET_LIST_COUNTRIES_REQUEST;
+}
+
+export const GET_COUNTRY_REQUEST = "GET_COUNTRY_REQUEST";
+export interface GetCountryRequestAction {
+  type: typeof GET_COUNTRY_REQUEST;
+  country: String
+}
+export type CountryActionTypes =
+  | GetCountryAction
+  | GetListCountriesAction
+  | GetListCountriesRequestAction
+  | GetCountryRequestAction;

@@ -3,8 +3,8 @@
  */
 import {
         CountryState,
-        LIST_COUNTRIES,
-        UPDATE_COUNTRY,
+        GET_LIST_COUNTRIES,
+        GET_COUNTRY,
         CountryActionTypes
         } from "./types";
 
@@ -16,12 +16,12 @@ export function countryReducer (
     action: CountryActionTypes
   ): CountryState {
     switch (action.type) {
-      case LIST_COUNTRIES:
+      case GET_LIST_COUNTRIES:
         return {
-          countries: [...state.countries]
+            countries: [...state.countries]
         };
-      case UPDATE_COUNTRY:
-        return state;
+      case GET_COUNTRY:
+        return state
       default:
         return state;
     }
