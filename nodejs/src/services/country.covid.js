@@ -37,6 +37,13 @@ async function getCountryCodiv(query) {
 }
 exports.getCountryCodiv = getCountryCodiv;
 /**
+ * @return {Array}
+ */
+function getAvailableCountries() {
+    return api.validCountries;
+}
+exports.getAvailableCountries = getAvailableCountries;
+/**
  * 
  * @param {Object} query
  * @return {Object}

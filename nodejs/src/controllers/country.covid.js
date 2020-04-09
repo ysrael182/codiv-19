@@ -45,4 +45,19 @@ exports.getCountryCovidApi =  async function(req, res, next) {
         });     
     }
 }
-
+exports.getAvailableCountries = async function(req, res, next) {
+    
+    try {
+        var countries = countryCodivService.getAvailableCountries();
+        return res.status(200).json({
+            status: 200,
+            data: countries,
+            message: "Retrieve successfully the information"
+        });   
+    } catch(e) {
+        return res.status(500).json({
+            status: 500, 
+            message: e.message
+        });     
+    }
+};
