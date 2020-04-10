@@ -5,7 +5,7 @@
 const mongoose = require('../config/database');
 
 const schema = {
-    country: String,
+    name: String,
     lastUpdate: {
         type: Date,
         default: Date.now
@@ -37,7 +37,7 @@ exports.schemaCountryCodiv = schema;
   */
 function getModelCountryCodiv(countryName, confirmed, deaths, recovered) {
     return {
-        country: countryName,
+        name: countryName,
         confirmed: confirmed,
         deaths: deaths,
         recovered: recovered,

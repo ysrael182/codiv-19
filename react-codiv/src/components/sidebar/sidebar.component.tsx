@@ -14,17 +14,19 @@ interface Props {
 const SidebarComponent: FunctionComponent<Props> = props =>  {
   const { countries, onGetListCountries } = props;
  
-  //;
+  useEffect(() => {
+    onGetListCountries();
+  }, []);
 
   return (
     <div className="sidebar">
-        <button onClick={onGetListCountries}>Show Countries</button>
         <ul>
+          <li className="active"><a>Latin American countries</a></li>
           {
-          console.log(props.countries)
-          /*props.countries.map((country, i) => {
-              return <ListItemCountry country = {country} />
-          })*/
+          props.countries.map((country, i) => {
+              // @ts-ignore
+              return <ListItemCountry key={i} country = {country} />
+          })
           };
         </ul>
     </div>

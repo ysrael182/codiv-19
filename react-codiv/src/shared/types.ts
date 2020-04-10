@@ -3,8 +3,11 @@
  */
 export interface Country {
     name: string;
+    confirmed: number;
+    deaths: number;
+    recovered: number;
+    lastUpdate: Date
 }
-
 export interface ResponseCountry {
     status: Number;
     data: Country;

@@ -9,7 +9,7 @@ import rootSaga from './sagas/rootSaga';
 
 const rootReducer = combineReducers({
     countries: countryReducer,
-    isLoading: isLoadingReducer
+    //isLoading: isLoadingReducer
 });
 export type AppState = ReturnType<typeof rootReducer>;
 const sagaMiddleware = createSagaMiddleware();

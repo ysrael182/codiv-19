@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch: Dispatch<CountryActionTypes>) => ({
 });
 const mapStateToProps = (state: AppState) => {
     return {
-       countries: state.countries
+       countries: state.countries.countries
     };
 };
 export default connect (

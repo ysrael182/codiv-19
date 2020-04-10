@@ -1,0 +1,29 @@
+@import '../styles/variables.scss';
+.country-item {
+    > a {
+        display: inline-block;
+        padding: 10px 5px;
+        width: 100%;
+        position: relative;
+        &:hover {
+           cursor: pointer;     
+        }
+        svg {
+            float: right;
+            margin-top: 5px;
+        }
+    }
+    .informational-box {
+        display: inline-block;
+        width: 100%;
+        font-size: small;
+        span {
+            display: inline-block;
+            width: 100%;
+        }
+    }
+    &.active {
+        text-align: left;
+        padding: 0;
+    }
+}

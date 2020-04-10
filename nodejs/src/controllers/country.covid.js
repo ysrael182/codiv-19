@@ -49,6 +49,9 @@ exports.getAvailableCountries = async function(req, res, next) {
     
     try {
         var countries = countryCodivService.getAvailableCountries();
+        countries = countries.map( function(item) {
+             return { name: item };
+        });
         return res.status(200).json({
             status: 200,
             data: countries,
