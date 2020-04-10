@@ -2,7 +2,7 @@
 /**
  * @author Israel
  */
-import { Country,
+import { 
    GET_COUNTRY, 
    GET_LIST_COUNTRIES, 
    GET_COUNTRY_REQUEST,
@@ -10,24 +10,25 @@ import { Country,
    GetCountryRequestAction,
    GetCountryAction,
    GetListCountriesAction,
-   GetListCountriesRequestAction } from "./types";
+   GetListCountriesRequestAction } from "../actionTypes/countryActionType";
+import { Country } from '../../shared/types';
 
-export function getCountry(country: Country): GetCountryAction {
+export function getCountry(country: string): GetCountryAction {
   return {
     type: GET_COUNTRY,
-    payload: country
-  };
-}
-export function getCountryRequest(country: string): GetCountryRequestAction{
-  return {
-    type: GET_COUNTRY_REQUEST,
     country
   };
 }
-export function getListCountries(countries: Country[]): GetListCountriesAction {
+export function getCountryRequest(): GetCountryRequestAction {
+  return {
+    type: GET_COUNTRY_REQUEST
+  };
+}
+
+export function getListCountries(): GetListCountriesAction {
   return {
      type: GET_LIST_COUNTRIES,
-     payload: countries
+     
   };  
 }
 export function getListCountriesAction(): GetListCountriesRequestAction {

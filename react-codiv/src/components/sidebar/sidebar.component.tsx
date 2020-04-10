@@ -5,25 +5,27 @@ import React, { FunctionComponent, useEffect } from "react";
 
 import '../../styles/sidebar.scss';
 import ListItemCountry from "../item-country/item.container";
-import { Country }  from "../../store/country/types";
+import { Country }  from "../../shared/types";
 
-interface Prop {
-  countries: Country[];
+interface Props {
+  countries: Country[]; //Fix this
   onGetListCountries(): void
 }
-const SidebarComponent: FunctionComponent<Prop> = props =>  {
+const SidebarComponent: FunctionComponent<Props> = props =>  {
   const { countries, onGetListCountries } = props;
  
-  useEffect(() => {
-    onGetListCountries();
-  })
+  //;
 
   return (
     <div className="sidebar">
+        <button onClick={onGetListCountries}>Show Countries</button>
         <ul>
-        {props.countries.map((country, i) => {
-            <ListItemCountry />
-        })};
+          {
+          console.log(props.countries)
+          /*props.countries.map((country, i) => {
+              return <ListItemCountry country = {country} />
+          })*/
+          };
         </ul>
     </div>
   );

@@ -3,10 +3,8 @@
  */
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import '../styles/sidebar.scss';
 import { AppState } from "../../store";
-import { CountryActionTypes }  from "../../store/country/types";
-import { getListCountriesAction } from "../../store/country/action";
+import { CountryActionTypes }  from "../../store/actionTypes/countryActionType";
 import ItemComponent from "./item.component";
 
 const mapDispatchToProps = (dispatch: Dispatch<CountryActionTypes>) => ({

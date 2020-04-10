@@ -3,20 +3,23 @@
  */
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import createSagaMiddleware from 'redux-saga';
-import { countryReducer } from './country/reducer';
-import rootSaga from './sagas';
+import { countryReducer } from './reducer/countryReducer';
+import isLoadingReducer from "./reducer/isLoadingReducer";
+import rootSaga from './sagas/rootSaga';
+
 const rootReducer = combineReducers({
-    countries: countryReducer
+    countries: countryReducer,
+    isLoading: isLoadingReducer
 });
 export type AppState = ReturnType<typeof rootReducer>;
-export default function configureStore() {
-  const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
+
+const configureStore = () => {
   const store = createStore(
     rootReducer,
     applyMiddleware(sagaMiddleware)
   );
-  return {
-    ...store,
-    runSaga: sagaMiddleware.run(rootSaga)
-  };
+  sagaMiddleware.run(rootSaga);
+  return store;
 }
+export default configureStore;

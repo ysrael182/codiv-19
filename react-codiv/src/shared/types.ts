@@ -11,5 +11,5 @@ export interface ResponseCountry {
 }
 export interface ResponseListCountry {
     status: Number,
-    data: String[]
+    data: Country[]
 }

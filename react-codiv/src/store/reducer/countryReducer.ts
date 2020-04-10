@@ -2,19 +2,22 @@
  * @author Israel Yasis
  */
 import {
-        CountryState,
         GET_LIST_COUNTRIES,
         GET_COUNTRY,
         CountryActionTypes
-        } from "./types";
-
+        } from "../actionTypes/countryActionType";
+import { Country } from "../../shared/types";      
+export interface CountryState {
+  countries: Country[]
+}
 const initialState: CountryState = {
-    countries: []
+  countries: []
 };
 export function countryReducer (
-    state = initialState,
+    state: CountryState = initialState,
     action: CountryActionTypes
   ): CountryState {
+    console.log(action.type);
     switch (action.type) {
       case GET_LIST_COUNTRIES:
         return {

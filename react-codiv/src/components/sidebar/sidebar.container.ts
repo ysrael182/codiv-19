@@ -3,23 +3,23 @@
  */
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import '../styles/sidebar.scss';
 import { AppState } from "../../store";
-import { CountryActionTypes }  from "../../store/country/types";
-import { getListCountriesAction } from "../../store/country/action";
+import { CountryActionTypes }  from "../../store/actionTypes/countryActionType";
+import { getListCountries } from "../../store/actionCreator/countryActionCreator";
 import SidebarComponent from "./sidebar.component";
 
 const mapDispatchToProps = (dispatch: Dispatch<CountryActionTypes>) => ({
   onGetListCountries: () => {
-    dispatch(getListCountriesAction());
+    dispatch(getListCountries());
   }
 });
 const mapStateToProps = (state: AppState) => {
     return {
-      countries: state.countries
+       countries: state.countries
     };
 };
-export default connect(
+export default connect (
   mapStateToProps,
   mapDispatchToProps
-)(SidebarComponent);
+  // @ts-ignore
+) ( SidebarComponent );

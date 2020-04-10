@@ -2,11 +2,11 @@
  * @author Israel Yasis
  */
 import React, { FunctionComponent } from "react";
-import { Country }  from "../../store/country/types";
-interface Prop {
+import { Country } from "../../shared/types";   
+interface Props {
     country: Country
 }
-const ItemComponent: FunctionComponent<Prop> = props =>  {
+const ItemComponent: FunctionComponent<Props> = props =>  {
     const { country } = props;
     return (
         <li>
