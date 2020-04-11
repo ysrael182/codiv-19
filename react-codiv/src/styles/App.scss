@@ -1,0 +1,10 @@
+@import '../styles/variables.scss';
+
+body {
+    background: $background-main !important;
+    .App {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+}

@@ -7,7 +7,8 @@ const dbPath = 'mongodb://localhost:27017/'+ dbName;
 
 mongoose.connect(dbPath, {
   useUnifiedTopology: true,
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useFindAndModify: false
 });
 const db = mongoose.connection;
 db.on("error", () => {

@@ -1,7 +1,8 @@
 import React from 'react';
-import './App.scss';
+import '../src/styles/App.scss';
 import Footer from '../src/components/footer';
 import Header from '../src/components/header';
+import Main from '../src/components/main';
 import Sidebar from '../src/components/sidebar/sidebar.container';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <div className="App">
       <Header />
       <Sidebar />
+      <Main />
       <Footer />
     </div>
   );

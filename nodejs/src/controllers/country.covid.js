@@ -4,7 +4,7 @@
 'use strict';
 
 const countryCodivService = require("../services/country.covid");
-const { validationResult }  = require("express-validator/check");
+const { validationResult }  = require("express-validator");
 
 exports.getCountryCovid = async function(req, res, next) {
     let validation = validationResult(req);

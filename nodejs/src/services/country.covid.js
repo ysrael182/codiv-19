@@ -17,12 +17,12 @@ async function getCountryCodiv(query) {
     if(countryCodiv == null || (Date.now() - countryCodiv.lastUpdate > api.apiRefresh)) {
         const informationCodiv = await getCountryApi(query);
         if(countryCodiv == null) {
-            countryCodiv = new countryCodivModel(informationCodiv)
-            .save(function (error) {
+             await new countryCodivModel(informationCodiv).save(function (error) {
                 if (error) {
                     throw new Error("Error creating a new register of codiv.");
                 }
             }); 
+            countryCodiv = informationCodiv;
         } else {
             countryCodiv = await countryCodivModel.findOneAndUpdate({name: query.country},
                 informationCodiv, 
@@ -68,7 +68,8 @@ async function getCountryApi(query) {
             confirmed += element.confirmed;
             recovered += element.recovered;
         });
-        return countryCodivMongoose.getModelCountryCodiv(query.country, confirmed, deaths, recovered);
+        const model = countryCodivMongoose.getModelCountryCodiv(query.country, confirmed, deaths, recovered);
+        return model;
     });
 };
 exports.getCountryApi = getCountryApi;
