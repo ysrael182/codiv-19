@@ -22,7 +22,6 @@ function* getCountrySaga({ country }: GetCountryAction) {
         yield put(getCountrySuccess(data.data));
     } catch (error) {
         console.log(error);
-       //yield put(actionCreators.getLyricsFailure(error.response.data.error));
     }  
 }
 function* getListCountriesSaga({}: GetListCountriesAction ) {
@@ -32,7 +31,6 @@ function* getListCountriesSaga({}: GetListCountriesAction ) {
         yield put(getListCountriesSuccess(data.data))
     } catch (error) {
         console.log(error);
-       //yield put(actionCreators.getLyricsFailure(error.response.data.error));
     }  
 }
 function* watchOnLoadCountries() {
