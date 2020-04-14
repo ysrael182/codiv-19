@@ -1,5 +1,8 @@
 nodejs/.vscode/
 nodejs/node_modules/
+nodejs-codiv/.vscode/
+nodejs-codiv/node_modules/
+nodejs-codiv/dist/
 .vscode/
 
 react-codiv/.vscode/
