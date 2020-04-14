@@ -1,9 +1,13 @@
+# nodejs
+
 nodejs/.vscode/
 nodejs/node_modules/
 nodejs-codiv/.vscode/
 nodejs-codiv/node_modules/
-nodejs-codiv/dist/
+nodejs-codiv/dist/*
 .vscode/
+
+# react
 
 react-codiv/.vscode/
 react-codiv/node_modules/
