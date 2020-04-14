@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "gulp scripts",
-    "test": "mocha --reporter spec --compilers ts:ts-node/register \"test/**/*.test.ts*\" "
+    "test": "mocha -r ts-node/register \"test/**/*.test.ts*\" --timeout 5000"
   },
   "keywords": [],
   "author": "",

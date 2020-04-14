@@ -27,3 +27,12 @@ the controller api are:
 http://localhost:3100/codiv-countries/
 http://localhost:3100/codiv-countries/{countryName}
 ```
+
+
+## Tests
+
+To run the test,  you must run the following in the root folder:
+
+```
+npm run test
+```
