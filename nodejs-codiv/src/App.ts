@@ -27,11 +27,10 @@ class App {
   }
 
   private routes(): void {
-    this.express.use(function(req, res, next) {
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-        res.header('Allow', 'GET');
-        next()
+    this.express.use("/", function(req, res, next) {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
     });
     this.express.use("/codiv-countries", routerCountryCodiv.router);
   }
