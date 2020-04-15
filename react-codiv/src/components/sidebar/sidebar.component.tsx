@@ -26,7 +26,7 @@ const SidebarComponent: FunctionComponent<Props> = props =>  {
         <ul>
           <li className="active"><a>Latin American countries</a></li>
           {
-          props.countries.map((country, i) => {
+          countries.map((country, i) => {
               // @ts-ignore
               return <ListItemCountry key={i} country = {country} />
           })

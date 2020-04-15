@@ -5,8 +5,12 @@
         padding: 10px 5px;
         width: 100%;
         position: relative;
+        color: $color-text-sidebar;
+        text-decoration: none;
         &:hover {
            cursor: pointer;     
+           color: $color-text-sidebar;
+           text-decoration: none;
         }
         svg {
             float: right;

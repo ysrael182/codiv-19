@@ -14,7 +14,7 @@ const ItemComponent: FunctionComponent<Props> = props =>  {
     const listClassName = openCountry ? "country-item active" : 'country-item';
     return (
         <li className={listClassName}>
-            <a onClick ={ () => { onGetCountry(props.country.name); setOpenCountry(!openCountry); } }>
+            <a href="#" onClick ={ () => { onGetCountry(props.country.name); setOpenCountry(!openCountry); } }>
               <span className="country-title">{country.name}</span>
               { !openCountry && 
               <svg className="bi bi-chevron-left" width="1em" height="0.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
