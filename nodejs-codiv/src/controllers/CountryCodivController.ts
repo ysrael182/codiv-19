@@ -6,6 +6,7 @@ import { CountryCodivService } from "../services/CountryCodivService";
 import { Request, Response, NextFunction} from 'express';
 import { ICountryCodivDTO, ICountryCodivDTOBuilder } from "../dto/countryDTO";
 import * as types from "./types";
+import { apiConfig } from "../config/ApiConfig";
 
 export class CountryCodivController {
 
@@ -70,16 +71,24 @@ export class CountryCodivController {
         next: NextFunction
         ) {
         try {
-            
-            const countries = this.countryCodivService.getAvailableCountries().map( function(item) {
-                 const builder = new ICountryCodivDTOBuilder();
-                 builder.setName(item)
-                 return builder.build();
+            const countries = await this.countryCodivService.getAllCountries();
+            let allCountries = apiConfig.validCountries.map(country => {
+                const countryModel = countries.find(item => item.name === country);
+                const builderCountry = new ICountryCodivDTOBuilder();
+                if(countryModel) {
+                    builderCountry.setName(countryModel.name)
+                                  .setConfirmed(countryModel.confirmed)
+                                  .setDeaths(countryModel.deaths)
+                                  .setRecovered(countryModel.recovered);
+                } else {
+                    builderCountry.setName(country);
+                }
+                return builderCountry.build();
             });
             return res.status(200).json(<types.ResponseList<ICountryCodivDTO>>{
                 statusCode: 200,
-                data: countries,
-                numberResults: countries.length,
+                data: allCountries,
+                numberResults: allCountries.length,
                 message: "Retrieve successfully the information"
             });   
         } catch(e) {

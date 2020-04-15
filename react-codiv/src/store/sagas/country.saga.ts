@@ -2,7 +2,7 @@
  * @author Israel Yasis
  */
 import { getCountry, getListCountries } from '../../shared/country.service';
-import { put, call, takeEvery, all, fork } from 'redux-saga/effects';
+import { put, call, takeEvery, takeLatest, all, fork } from 'redux-saga/effects';
 import { GET_COUNTRY, GET_LIST_COUNTRIES } from '../actionTypes/countryActionType';
 import { 
     getCountryRequest,
@@ -34,8 +34,8 @@ function* getListCountriesSaga({}: GetListCountriesAction ) {
     }  
 }
 function* watchOnLoadCountries() {
-    yield takeEvery(GET_LIST_COUNTRIES, getListCountriesSaga);
-    yield takeEvery(GET_COUNTRY, getCountrySaga);
+    yield takeLatest(GET_LIST_COUNTRIES, getListCountriesSaga);
+    yield takeLatest(GET_COUNTRY, getCountrySaga);
 }
 export default function* countrySaga() {
     yield all([fork(watchOnLoadCountries)]);

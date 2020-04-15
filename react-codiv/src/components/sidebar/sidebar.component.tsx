@@ -8,14 +8,17 @@ import ListItemCountry from "../item-country/item.container";
 import { Country }  from "../../shared/types";
 
 interface Props {
-  countries: Country[]; //Fix this
+  countries: Country[];
   onGetListCountries(): void
 }
 const SidebarComponent: FunctionComponent<Props> = props =>  {
   const { countries, onGetListCountries } = props;
  
   useEffect(() => {
-    onGetListCountries();
+    const getCountriesInterval = setInterval(() => {
+      onGetListCountries();
+    }, 10000);
+    return () => clearInterval(getCountriesInterval);
   }, []);
 
   return (
@@ -27,7 +30,7 @@ const SidebarComponent: FunctionComponent<Props> = props =>  {
               // @ts-ignore
               return <ListItemCountry key={i} country = {country} />
           })
-          };
+          }
         </ul>
     </div>
   );

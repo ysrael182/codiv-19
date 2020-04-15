@@ -1,7 +1,7 @@
 import { apiConfig } from "../config/ApiConfig";
-import axios, { AxiosResponse }  from "axios";
-import * as types from "./types";
+import axios from "axios";
 import { CountryCodivModel, ICountryCodiv } from "../model/CountryCodivModel";
+
 /**
  * @author Israel Yasis
  */
@@ -9,44 +9,60 @@ export class CountryCodivService {
 
     constructor() {
         this.getCountryCodiv = this.getCountryCodiv.bind(this);
-        this.getAvailableCountries = this.getAvailableCountries.bind(this);
+        this.getAllCountries = this.getAllCountries.bind(this);
         this.getCountryApi = this.getCountryApi.bind(this);
+        this.getCountryCodivByQuery = this.getCountryCodivByQuery.bind(this);
+        this.createNewCountryCodiv = this.createNewCountryCodiv.bind(this);
+        this.findAndUpdateCountryCodiv = this.findAndUpdateCountryCodiv.bind(this);
+    }
+
+    private async getCountryCodivByQuery(query: Object): Promise<ICountryCodiv> {
+        return CountryCodivModel.findOne(query).exec();
+    }
+    private async getCountriesCodivByQuery(query: Object): Promise<ICountryCodiv[]> {
+        return CountryCodivModel.find(query).exec();
+    }
+    private async createNewCountryCodiv(countryModel: ICountryCodiv): Promise<ICountryCodiv> {
+        return new CountryCodivModel(countryModel).save(function (error) {
+            if (error) {
+                throw new Error("Error creating a new register of codiv.");
+            }
+        });
+    }
+    private async findAndUpdateCountryCodiv(query: Object, countryData: ICountryCodiv): Promise<ICountryCodiv> {
+        return CountryCodivModel.findOneAndUpdate(query, countryData, function (error) {
+            if (error) {
+                throw new Error("Error updating a register codiv.");
+            }
+        });
     }
 
     public async getCountryCodiv(countryName: string): Promise<ICountryCodiv> {
         
-        let countryCodiv = await CountryCodivModel.findOne({ name: countryName }).exec();
-        const currentTime = Date.now();
-        if (countryCodiv == null || (currentTime - countryCodiv.lastUpdate > apiConfig.apiRefresh)) {
-            const informationCodiv = await this.getCountryApi(countryName);
-
-            if (countryCodiv == null && informationCodiv) {
-                await new CountryCodivModel(informationCodiv).save(function (error) {
-                    if (error) {
-                        throw new Error("Error creating a new register of codiv.");
-                    }
-                });
-                countryCodiv = informationCodiv;
-            } else {
-                countryCodiv = await CountryCodivModel.findOneAndUpdate(
-                    { name: countryName },
-                    informationCodiv,
-                    function (error) {
-                        if (error) {
-                            throw new Error("Error updating a register codiv.");
-                        }
-                    });
-            }
+        let countryCodiv = await this.getCountryCodivByQuery({name: countryName});
+        if (countryCodiv != null && (Date.now() - countryCodiv.lastUpdate < apiConfig.apiRefresh)) {
+            return countryCodiv;    
+        }
+        const codivApi = await this.getCountryApi(countryName);
+        if(codivApi == null) {
+            throw new Error("Invalid Response API");
+        }
+        if(countryCodiv == null) {
+            await this.createNewCountryCodiv(codivApi);
+            countryCodiv = codivApi;
+        } else {
+            countryCodiv = await this.findAndUpdateCountryCodiv({ name: countryName }, codivApi);
         }
         return countryCodiv;
     }
 
-    public getAvailableCountries(): string[] {
-        return apiConfig.validCountries;
+    public async getAllCountries(): Promise<ICountryCodiv[]> {
+        const countries = apiConfig.validCountries;
+        return this.getCountriesCodivByQuery({name: {"$in": countries}});
     }
 
 
-    public async getCountryApi(countryName: string): Promise<ICountryCodiv | void> {
+    public async getCountryApi(countryName: string): Promise<ICountryCodiv> {
       
         return axios({
             url: apiConfig.apiV1URL,
@@ -80,6 +96,7 @@ export class CountryCodivService {
             return countryResponse;
         }).catch(response => {
             console.log(response);
+            return null;
         });    
     };
 }

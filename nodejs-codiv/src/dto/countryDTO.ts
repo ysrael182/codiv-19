@@ -16,14 +16,21 @@ export class ICountryCodivDTOBuilder implements DTOBuilder<ICountryCodivDTO> {
     constructor() {
         this.setName = this.setName.bind(this);
     }
-    setName(name: string) {
+    setName(name: string): ICountryCodivDTOBuilder {
         this.name = name;
+        return this;
     }
-    setConfirmed(confirmed: number) {
+    setConfirmed(confirmed: number): ICountryCodivDTOBuilder {
         this.confirmed =  confirmed;
+        return this;
     }
-    setDeaths(deaths: number ) {
+    setDeaths(deaths: number ): ICountryCodivDTOBuilder {
         this.deaths = deaths;
+        return this;
+    }
+    setRecovered(recovered: number): ICountryCodivDTOBuilder{
+        this.recovered = recovered;
+        return this;
     }
     build(): ICountryCodivDTO {
         return {
