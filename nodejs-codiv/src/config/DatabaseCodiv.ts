@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
  * @author Israel Yasis
  */
 const dbName = 'codiv';
-const dbPath = 'mongodb://localhost:27017/'+ dbName;
+const dbPath = 'mongodb://mongo:27017/'+ dbName;
 export async function connectDatabase() {
   mongoose.set('useUnifiedTopology', true);
   mongoose.set('useNewUrlParser', true);

@@ -31,3 +31,7 @@ react-codiv/.env.production.local
 react-codiv/npm-debug.log*
 react-codiv/yarn-debug.log*
 react-codiv/yarn-error.log*
+
+
+#mongodb
+data

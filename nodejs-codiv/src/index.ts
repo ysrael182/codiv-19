@@ -2,9 +2,11 @@ import * as http from 'http';
 import * as debug from 'debug';
 
 import App from './App';
-
+ 
 const port = normalizePort(process.env.PORT || 3100);
+const host = '0.0.0.0';
 console.log("port: "+port);
+console.log("host: "+ host);
 App.set('port', port);
 
 const server = http.createServer(App);

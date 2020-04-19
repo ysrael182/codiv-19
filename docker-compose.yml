@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  codiv-service:
+    build: ./nodejs-codiv
+    volumes:
+      - ./nodejs-codiv:/home/node/app/
+      - ./nodejs-codiv/nodemon.json:/home/node/app/nodemon.json
+    ports:
+      - 3100:3100
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "21017:21017"
+  codiv-website:
+    build: ./react-codiv
+    volumes:
+      - ./react-codiv:/app/
+      - ./react-codiv:/app/node_modules
+    ports:
+      - 3001:3000
+    depends_on:
+      - codiv-service
+    environment:
+      - CHOKIDAR_USEPOLLING=true        
